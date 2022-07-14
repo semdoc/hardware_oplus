@@ -27,3 +27,6 @@ type vendor_proc_oplus_version, fs_type, proc_type;
 
 # AICP
 type sysfs_info, fs_type, sysfs_type;
+
+# USB fast charge
+type sysfs_fastcharge, fs_type, sysfs_type;
