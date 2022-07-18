@@ -28,6 +28,7 @@
             </intent-filter>
         </receiver>
 
+        <!-- Touch Gesture Settings Activity -->
         <activity
             android:name=".TouchscreenGestureSettings"
             android:label="@string/touchscreen_gesture_settings_title" />
@@ -40,5 +41,18 @@
             android:label="@string/touchscreen_gesture_settings_title"
             android:theme="@style/AppTheme.Transparent">
         </activity>
+
+        <!-- Search Indexable -->
+        <provider
+            android:name=".ConfigPanelSearchIndexablesProvider"
+            android:authorities="com.android.touch.gestures"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
     </application>
 </manifest>
