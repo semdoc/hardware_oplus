@@ -4,7 +4,10 @@ android_app {
     // Include SettingsLib and it's dependencies
     defaults: ["SettingsLibDefaults"],
 
-    srcs: ["src/**/*.java"],
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
     resource_dirs: ["res"],
 
     static_libs: [
