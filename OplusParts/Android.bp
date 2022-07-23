@@ -1,0 +1,38 @@
+android_app {
+    name: "OplusParts",
+
+    defaults: [
+        "SettingsLibDefaults",
+    ],
+
+    srcs: [
+        "src/**/*.java",
+    ],
+
+    resource_dirs: ["res"],
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+    privileged: true,
+
+    static_libs: [
+        "com.aicp.settings.resources",
+        "com.aicp.deviceparts",
+        "androidx.core_core",
+        "androidx.preference_preference",
+        "AicpGear-preference",
+        "AicpGear-util",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
+
+sh_binary {
+    name: "tri-state-key-calibrate",
+    init_rc: ["tri-state-key-calibrate.rc"],
+    src: "tri-state-key-calibrate.sh",
+    vendor: true,
+}
