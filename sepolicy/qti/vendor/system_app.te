@@ -13,6 +13,10 @@ allow system_app sysfs_battery_supply:file r_file_perms;
 # Battery Health
 r_dir_file(system_app, vendor_sysfs_usb_supply)
 
+# Game Mode
+allow system_app vendor_proc_display:dir search;
+allow system_app vendor_proc_display:file { getattr open write };
+
 # USB fast charge
 allow system_app sysfs_fastcharge:dir search;
 allow system_app sysfs_fastcharge:file rw_file_perms;
