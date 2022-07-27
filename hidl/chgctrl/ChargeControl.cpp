@@ -20,9 +20,9 @@
 #include <android-base/logging.h>
 #include <fcntl.h>
 
-#define CHARGE_CONTROL_NODE "/sys/devices/platform/soc/soc:oneplus_wlchg/power_supply/wireless/op_disable_charge"
-#define CHARGE_ENABLED '0'
-#define CHARGE_DISABLED '1'
+#define CHARGE_CONTROL_NODE "/sys/devices/virtual/oplus_chg/battery/mmi_charging_enable"
+#define CHARGE_ENABLED '1'
+#define CHARGE_DISABLED '0'
 
 namespace vendor::lineage::chgctrl::implementation {
 
