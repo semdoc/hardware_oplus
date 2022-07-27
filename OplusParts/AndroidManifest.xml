@@ -33,7 +33,7 @@
 
     <application
         android:icon="@drawable/ic_logo"
-        android:label="@string/device_title"
+        android:label="@string/oplusparts_title"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true"
         android:theme="@style/Theme.SubSettingsBase"
@@ -42,7 +42,7 @@
         <!-- OplusParts Settings -->
         <activity
             android:name=".OplusPartsActivity"
-            android:label="@string/device_title"
+            android:label="@string/oplusparts_title"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.aicp.oplus.OplusParts.OPLUS_SETTINGS" />

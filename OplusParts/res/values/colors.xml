@@ -16,7 +16,5 @@
 -->
 <resources>
 
-    <color name="config_icon_tint">?android:attr/colorControlNormal</color>
-
     <color name="disabled_text_color">#66000000</color> <!-- 38% black -->
 </resources>
