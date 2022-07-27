@@ -4,15 +4,12 @@ rw_dir_file(system_server, vendor_proc_tri_state_key)
 allow system_server sysfs_dm:file { getattr open read };
 allow system_server sysfs_dm:file write;
 
-# Allow system_server to read Fast Charging status
-allow system_server vendor_sysfs_battery_supply:file { getattr open read };
-
 rw_dir_file(system_server, vendor_proc_display)
 
 rw_dir_file(system_server, vendor_proc_oplus_version)
 
 rw_dir_file(system_server, vendor_proc_wireless)
 
-r_dir_file(system_server, vendor_sysfs_battery_supply)
+rw_dir_file(system_server, vendor_sysfs_battery_supply)
 
-r_dir_file(system_server, vendor_sysfs_usb_supply)
+rw_dir_file(system_server, vendor_sysfs_usb_supply)
