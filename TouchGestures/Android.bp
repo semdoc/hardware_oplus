@@ -13,6 +13,7 @@ android_app {
     static_libs: [
         "AicpGear-preference",
         "AicpGear-util",
+        "com.aicp.deviceparts",
     ],
 
     manifest: "AndroidManifest.xml",
