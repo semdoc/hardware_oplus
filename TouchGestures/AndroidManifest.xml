@@ -3,6 +3,7 @@
     package="com.android.touch.gestures"
     android:sharedUserId="android.uid.system">
 
+    <uses-permission android:name="android.permission.READ_SEARCH_INDEXABLES" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
