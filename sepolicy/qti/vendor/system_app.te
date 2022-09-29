@@ -1,28 +1,17 @@
 # Aicp PartsBin
-allow system_app sysfs_leds:dir search;
-allow system_app sysfs_leds:file rw_file_perms;
-allow system_app sysfs_vibrator:dir r_dir_perms;
-allow system_app sysfs_vibrator:file rw_file_perms;
-allow system_app sysfs_graphics:dir { search };
-allow system_app sysfs_graphics:file rw_file_perms;
+rw_dir_file(system_app, sysfs_leds)
+rw_dir_file(system_app, sysfs_fastcharge)
+rw_dir_file(system_app, sysfs_vibrator)
+rw_dir_file(system_app, vendor_proc_display)
+rw_dir_file(system_app, vendor_proc_wireless)
+rw_dir_file(system_app, vendor_sysfs_graphics)
+rw_dir_file(system_app, vendor_sysfs_kgsl)
+rw_dir_file(system_app, vendor_sysfs_msm_perf)
+rw_dir_file(system_app, vendor_sysfs_usb_supply)
 
 # Access rules for reading battery health
 allow system_app sysfs_battery_supply:dir { search };
 allow system_app sysfs_battery_supply:file r_file_perms;
-
-# Battery Health
-r_dir_file(system_app, vendor_sysfs_usb_supply)
-
-# Game Mode
-allow system_app vendor_proc_display:dir search;
-allow system_app vendor_proc_display:file { getattr open write };
-
-# USB fast charge
-allow system_app sysfs_fastcharge:dir search;
-allow system_app sysfs_fastcharge:file rw_file_perms;
-
-# Vibrator
-rw_dir_file(system_app, sysfs_vibrator)
 
 # Zram
 r_dir_file(system_app, sysfs_zram)

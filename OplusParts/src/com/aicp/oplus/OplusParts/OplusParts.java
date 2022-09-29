@@ -33,10 +33,12 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreference;
+import androidx.preference.TwoStatePreference;
 
 import java.util.Arrays;
 
 import com.aicp.oplus.OplusParts.Constants;
+import com.aicp.oplus.OplusParts.modeswitch.*;
 import com.android.internal.util.aicp.FileUtils;
 
 public class OplusParts extends PreferenceFragment
@@ -45,6 +47,8 @@ public class OplusParts extends PreferenceFragment
 
     private static final String KEY_USB2_SWITCH = "usb2_fast_charge";
     private static final String KEY_VIBSTRENGTH = "vib_strength";
+    public static final String KEY_CATEGORY_MISC = "misc";
+    public static final String KEY_QUIET_MODE_SWITCH = "quiet_mode";
 
     private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String FILE_LEVEL = "/sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level";
@@ -58,12 +62,15 @@ public class OplusParts extends PreferenceFragment
     private SwitchPreference mUSB2FastChargeModeSwitch;
 
     private CustomSeekBarPreference mVibratorStrengthPreference;
+    private static TwoStatePreference mQuietModeSwitch;
 
     private Vibrator mVibrator;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.main);
+
+        Context context = this.getContext();
 
         mVibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -85,6 +92,24 @@ public class OplusParts extends PreferenceFragment
             mVibratorStrengthPreference.setOnPreferenceChangeListener(this);
         } else {
             mVibratorStrengthPreference.setEnabled(false);
+        }
+
+        // Misc Settings
+        boolean miscCategory = false;
+
+        // Quiet mode
+        miscCategory = miscCategory | isFeatureSupported(context, R.bool.config_deviceSupportsQuietMode);
+        if (isFeatureSupported(context, R.bool.config_deviceSupportsQuietMode)) {
+            mQuietModeSwitch = (TwoStatePreference) findPreference(KEY_QUIET_MODE_SWITCH);
+            mQuietModeSwitch.setEnabled(QuietModeSwitch.isSupported(this.getContext()));
+            mQuietModeSwitch.setOnPreferenceChangeListener(new QuietModeSwitch());
+        }
+        else {
+           findPreference(KEY_QUIET_MODE_SWITCH).setVisible(false);
+        }
+
+        if (!miscCategory) {
+            getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_MISC));
         }
 
         initNotificationSliderPreference();
@@ -366,6 +391,16 @@ public class OplusParts extends PreferenceFragment
             Integer.parseInt(actionMiddle),
             Integer.parseInt(actionBottom)
         });
+    }
+
+    private static boolean isFeatureSupported(Context ctx, int feature) {
+        try {
+            return ctx.getResources().getBoolean(feature);
+        }
+        // TODO: Replace with proper exception type class
+        catch (Exception e) {
+            return false;
+        }
     }
 
     public static void restoreFastChargeSetting(Context context) {

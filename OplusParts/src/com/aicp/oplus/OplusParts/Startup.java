@@ -24,6 +24,7 @@ import android.provider.Settings;
 import androidx.preference.PreferenceManager;
 
 import com.aicp.oplus.OplusParts.Utils;
+import com.aicp.oplus.OplusParts.modeswitch.*;
 
 public class Startup extends BroadcastReceiver {
 
@@ -31,9 +32,25 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
-            OplusParts.restoreSliderStates(context);
-            OplusParts.restoreFastChargeSetting(context);
-            OplusParts.restoreVibStrengthSetting(context);
+        OplusParts.restoreSliderStates(context);
+        OplusParts.restoreFastChargeSetting(context);
+        OplusParts.restoreVibStrengthSetting(context);
+
+        boolean enabled = false;
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        enabled = sharedPrefs.getBoolean(OplusParts.KEY_QUIET_MODE_SWITCH, false);
+        if (enabled) {
+            restore(QuietModeSwitch.getFile(context), enabled);
+        }
+    }
+
+    private void restore(String file, boolean enabled) {
+        if (file == null) {
+            return;
+        }
+        if (enabled) {
+            Utils.writeValue(file, "1");
+        }
     }
 
     private void restore(String file, String value) {
