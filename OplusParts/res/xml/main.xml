@@ -97,6 +97,23 @@
             android:defaultValue="3" />
     </PreferenceCategory>
 
+    <!-- Start of UiBench Category -->
+    <PreferenceCategory
+        android:key="uibench"
+        android:title="@string/category_uibench">
+
+        <Preference
+            android:key="jitter"
+            android:icon="@drawable/ic_uibench_mode"
+            android:title="@string/jitter_test_title"
+            android:summary="@string/jitter_test_summary"
+            android:persistent="false" >
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.aicp.oplus.OplusParts"
+                    android:targetClass="com.aicp.oplus.OplusParts.uibench.JitterTestActivity" />
+        </Preference>
+    </PreferenceCategory>
+
     <!-- Start of misc settings category -->
     <PreferenceCategory
         android:key="misc"

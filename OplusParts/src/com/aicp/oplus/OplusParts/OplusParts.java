@@ -50,6 +50,9 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_MISC = "misc";
     public static final String KEY_QUIET_MODE_SWITCH = "quiet_mode";
 
+    public static final String KEY_CATEGORY_UIBENCH = "uibench";
+    public static final String KEY_JITTER = "jitter";
+
     private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String FILE_LEVEL = "/sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level";
     private static final long testVibrationPattern[] = {0,5};
@@ -110,6 +113,21 @@ public class OplusParts extends PreferenceFragment
 
         if (!miscCategory) {
             getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_MISC));
+        }
+
+        // UiBench
+        boolean uibenchCategory = false;
+
+        // Jitter Test
+        uibenchCategory = uibenchCategory | isFeatureSupported(context, R.bool.config_deviceSupportsJitterTest);
+        if (isFeatureSupported(context, R.bool.config_deviceSupportsJitterTest)) {
+        }
+        else {
+            findPreference(KEY_JITTER).setVisible(false);
+        }
+
+        if (!uibenchCategory) {
+            getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_UIBENCH));
         }
 
         initNotificationSliderPreference();

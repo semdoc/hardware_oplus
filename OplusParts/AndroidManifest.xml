@@ -53,6 +53,17 @@
         <activity android:name=".OplusParts"
             android:exported="false" />
 
+        <!-- Jitter Test Activity -->
+        <activity
+            android:name=".uibench.JitterTestActivity"
+            android:exported="true"
+            android:label="@string/jitter_test_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".KeyHandler"
             android:permission="KeyHandlerService"
