@@ -53,6 +53,9 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_UIBENCH = "uibench";
     public static final String KEY_JITTER = "jitter";
 
+    public static final String KEY_CATEGORY_CPU = "cpu";
+    public static final String KEY_POWER_EFFICIENT_WQ_SWITCH = "power_efficient_workqueue";
+
     private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String FILE_LEVEL = "/sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level";
     private static final long testVibrationPattern[] = {0,5};
@@ -66,6 +69,7 @@ public class OplusParts extends PreferenceFragment
 
     private CustomSeekBarPreference mVibratorStrengthPreference;
     private static TwoStatePreference mQuietModeSwitch;
+    private static TwoStatePreference mPowerEfficientWorkqueueModeSwitch;
 
     private Vibrator mVibrator;
 
@@ -95,6 +99,21 @@ public class OplusParts extends PreferenceFragment
             mVibratorStrengthPreference.setOnPreferenceChangeListener(this);
         } else {
             mVibratorStrengthPreference.setEnabled(false);
+        }
+
+        // CPU category
+        boolean cpuCategory = false;
+
+        // Power Efficient Workqueue
+        cpuCategory = cpuCategory | isFeatureSupported(context, R.bool.config_deviceSupportsPowerEfficientWorkqueue);
+        if (isFeatureSupported(context, R.bool.config_deviceSupportsPowerEfficientWorkqueue)) {
+            mPowerEfficientWorkqueueModeSwitch = (TwoStatePreference) findPreference(KEY_POWER_EFFICIENT_WQ_SWITCH);
+            mPowerEfficientWorkqueueModeSwitch.setEnabled(PowerEfficientWorkqueueModeSwitch.isSupported(this.getContext()));
+            mPowerEfficientWorkqueueModeSwitch.setChecked(PowerEfficientWorkqueueModeSwitch.isCurrentlyEnabled(this.getContext()));
+            mPowerEfficientWorkqueueModeSwitch.setOnPreferenceChangeListener(new PowerEfficientWorkqueueModeSwitch());
+        }
+        else {
+           findPreference(KEY_POWER_EFFICIENT_WQ_SWITCH).setVisible(false);
         }
 
         // Misc Settings

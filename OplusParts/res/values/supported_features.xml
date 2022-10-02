@@ -18,6 +18,9 @@
 <!-- These resources are around just to allow their values to be customized
      for different OnePlus serires/devices.  Do not translate. -->
 <resources>
+    <!-- Whether device supports Power Efficient Workqueue -->
+    <bool name="config_deviceSupportsPowerEfficientWorkqueue">false</bool>
+
     <!-- Whether device supports oem wireless charger Quiet Mode -->
     <bool name="config_deviceSupportsQuietMode">false</bool>
 

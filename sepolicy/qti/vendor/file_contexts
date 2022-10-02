@@ -84,6 +84,9 @@
 /(odm|vendor/odm)/bin/wlchgmonitor    u:object_r:wlchgmonitor_exec:s0
 /dev/wlchg                            u:object_r:wlchg_device:s0
 
+# Power Efficient Workqueue
+/sys/module/workqueue/parameters/power_efficient                                          u:object_r:sysfs_workqueue:s0
+
 # AICP - PartsBin Display Modes
 /sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/dynamic_fps             u:object_r:sysfs_dm:s0
 

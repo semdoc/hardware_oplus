@@ -97,6 +97,18 @@
             android:defaultValue="3" />
     </PreferenceCategory>
 
+    <!-- Start of CPU Category -->
+    <PreferenceCategory
+        android:key="cpu"
+        android:title="@string/cpu_title">
+
+        <SwitchPreference
+            android:key="power_efficient_workqueue"
+            android:icon="@drawable/ic_cpu"
+            android:title="@string/power_efficient_workqueue_title"
+            android:summary="@string/power_efficient_workqueue_summary" />
+    </PreferenceCategory>
+
     <!-- Start of UiBench Category -->
     <PreferenceCategory
         android:key="uibench"

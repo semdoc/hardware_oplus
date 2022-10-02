@@ -18,6 +18,11 @@
 <!-- These resources are around just to allow their values to be customized
      for different OnePlus serires/devices.  Do not translate. -->
 <resources>
+    <!-- Power Efficient Workqueue sysfs node path, true, false -->
+    <string name="node_power_efficient_workqueue_mode_switch"></string>
+    <string name="node_power_efficient_workqueue_mode_switch_true"></string>
+    <string name="node_power_efficient_workqueue_mode_switch_false"></string>
+
     <!-- Quiet Mode procfs node path, true, false -->
     <string name="node_quiet_mode_switch"></string>
     <string name="node_quiet_mode_switch_true"></string>

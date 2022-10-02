@@ -38,6 +38,10 @@ public class Startup extends BroadcastReceiver {
 
         boolean enabled = false;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        enabled = sharedPrefs.getBoolean(OplusParts.KEY_POWER_EFFICIENT_WQ_SWITCH, false);
+        if (enabled) {
+            restore(PowerEfficientWorkqueueModeSwitch.getFile(context), enabled);
+               }
         enabled = sharedPrefs.getBoolean(OplusParts.KEY_QUIET_MODE_SWITCH, false);
         if (enabled) {
             restore(QuietModeSwitch.getFile(context), enabled);

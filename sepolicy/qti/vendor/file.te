@@ -26,5 +26,8 @@ type vendor_sysfs_sensor_fb, fs_type, sysfs_type;
 # Versioning
 type vendor_proc_oplus_version, fs_type, proc_type;
 
+# Power Efficient Workqueue
+type sysfs_workqueue, fs_type, sysfs_type;
+
 # AICP
 type sysfs_info, fs_type, sysfs_type;
