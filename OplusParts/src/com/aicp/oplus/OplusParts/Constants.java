@@ -48,6 +48,7 @@ public class Constants {
     public static final String NOTIF_SLIDER_FOR_ROTATION = "4";
     public static final String NOTIF_SLIDER_FOR_RINGER = "5";
     public static final String NOTIF_SLIDER_FOR_NOTIFICATION_RINGER = "6";
+    public static final String NOTIF_SLIDER_FOR_REFRESH = "7";
 
     public static final String ACTION_UPDATE_SLIDER_POSITION
             = "com.aicp.oplus.OplusParts.UPDATE_SLIDER_POSITION";
@@ -73,6 +74,9 @@ public class Constants {
     public static final int MODE_ROTATION_0 = 641;
     public static final int MODE_ROTATION_90 = 642;
     public static final int MODE_ROTATION_270 = 643;
+    public static final int MODE_REFRESH_AUTO = 644;
+    public static final int MODE_REFRESH_MIN = 645;
+    public static final int MODE_REFRESH_MAX = 646;
 
     // Holds <preference_key> -> <proc_node> mapping
     public static final Map<String, String> sBooleanNodePreferenceMap = new HashMap<>();
