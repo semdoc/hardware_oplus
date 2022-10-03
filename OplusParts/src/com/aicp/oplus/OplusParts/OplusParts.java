@@ -282,6 +282,10 @@ public class OplusParts extends PreferenceFragment
                 return updateSliderActions(
                         R.array.notification_ringer_slider_mode_entries,
                         R.array.notification_ringer_slider_mode_entry_values);
+            case Constants.NOTIF_SLIDER_FOR_REFRESH:
+                return updateSliderActions(
+                        R.array.notification_slider_refresh_entries,
+                        R.array.notification_slider_refresh_entry_values);
             default:
                 return false;
         }
@@ -472,6 +476,8 @@ public class OplusParts extends PreferenceFragment
                 return R.array.config_defaultSliderActionsForRinger;
             case Constants.NOTIF_SLIDER_FOR_NOTIFICATION_RINGER:
                 return R.array.config_defaultSliderActionsForNotificationRinger;
+            case Constants.NOTIF_SLIDER_FOR_REFRESH:
+                return R.array.config_defaultSliderActionsForRefresh;
             default:
                 return 0;
         }

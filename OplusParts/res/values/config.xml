@@ -60,4 +60,11 @@
         <item>64</item>
         <item>63</item>
     </string-array>
+
+    <!-- The default actions of slider when use for refresh rate -->
+    <string-array name="config_defaultSliderActionsForRefresh" translatable="false">
+        <item>68</item>
+        <item>66</item>
+        <item>67</item>
+    </string-array>
 </resources>
