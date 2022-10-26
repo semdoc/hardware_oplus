@@ -136,7 +136,8 @@ public class KeyHandler implements DeviceKeyHandler {
             return event;
         }
 
-        if (!mInputManager.getInputDevice(event.getDeviceId()).getName().equals("oplus,hall_tri_state_key")) {
+        String deviceName = mInputManager.getInputDevice(event.getDeviceId()).getName();
+        if (!deviceName.equals("oplus,hall_tri_state_key") && !deviceName.equals("oplus,tri-state-key")) {
             return event;
         }
 
