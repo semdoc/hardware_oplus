@@ -44,16 +44,16 @@ public final class RefreshController extends SliderControllerBase {
         Log.d(TAG, "slider action: " + action);
         switch (action) {
             case REFRESH_AUTO:
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.PEAK_REFRESH_RATE, 120f);
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.MIN_REFRESH_RATE, 60f);
+                 writeSettings(Settings.System.PEAK_REFRESH_RATE, 120);
+                 writeSettings(Settings.System.MIN_REFRESH_RATE, 60);
                  return Constants.MODE_REFRESH_AUTO;
             case REFRESH_MIN:
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.PEAK_REFRESH_RATE, 60f);
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.MIN_REFRESH_RATE, 60f);
+                 writeSettings(Settings.System.PEAK_REFRESH_RATE, 60);
+                 writeSettings(Settings.System.MIN_REFRESH_RATE, 60);
                  return Constants.MODE_REFRESH_MIN;
             case REFRESH_MAX:
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.PEAK_REFRESH_RATE, 120f);
-                 Settings.System.putFloat(mContext.getContentResolver(), Settings.System.MIN_REFRESH_RATE, 120f);
+                 writeSettings(Settings.System.PEAK_REFRESH_RATE, 120);
+                 writeSettings(Settings.System.MIN_REFRESH_RATE, 120);
                  return Constants.MODE_REFRESH_MAX;
             default:
                 return 0;
@@ -62,8 +62,8 @@ public final class RefreshController extends SliderControllerBase {
 
     @Override
     public void reset() {
-         Settings.System.putFloat(mContext.getContentResolver(), Settings.System.PEAK_REFRESH_RATE, 120f);
-         Settings.System.putFloat(mContext.getContentResolver(), Settings.System.MIN_REFRESH_RATE, 60f);
+         writeSettings(Settings.System.PEAK_REFRESH_RATE, 120);
+         writeSettings(Settings.System.MIN_REFRESH_RATE, 60);
     }
 
     private boolean writeSettings(String key, int value) {
