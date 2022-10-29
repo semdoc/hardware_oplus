@@ -67,4 +67,26 @@
         <item>66</item>
         <item>67</item>
     </string-array>
+
+    <!-- The default actions of slider when use for extra dim -->
+    <string-array name="config_defaultSliderActionsForExtraDim" translatable="false">
+        <item>71</item>
+        <item>72</item>
+        <item>69</item>
+    </string-array>
+
+    <!-- The default actions of slider when use for nightlight -->
+    <string-array name="config_defaultSliderActionsForNightLight" translatable="false">
+        <item>76</item>
+        <item>74</item>
+        <item>73</item>
+    </string-array>
+
+    <!-- The default actions of slider when use for colorspace -->
+    <string-array name="config_defaultSliderActionsForColorSpace" translatable="false">
+        <item>78</item>
+        <item>79</item>
+        <item>80</item>
+    </string-array>
+
 </resources>

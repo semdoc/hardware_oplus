@@ -49,6 +49,9 @@ public class Constants {
     public static final String NOTIF_SLIDER_FOR_RINGER = "5";
     public static final String NOTIF_SLIDER_FOR_NOTIFICATION_RINGER = "6";
     public static final String NOTIF_SLIDER_FOR_REFRESH = "7";
+    public static final String NOTIF_SLIDER_FOR_EXTRADIM = "8";
+    public static final String NOTIF_SLIDER_FOR_NIGHTLIGHT = "9";
+    public static final String NOTIF_SLIDER_FOR_COLORSPACE = "10";
 
     public static final String ACTION_UPDATE_SLIDER_POSITION
             = "com.aicp.oplus.OplusParts.UPDATE_SLIDER_POSITION";
@@ -77,6 +80,18 @@ public class Constants {
     public static final int MODE_REFRESH_AUTO = 644;
     public static final int MODE_REFRESH_MIN = 645;
     public static final int MODE_REFRESH_MAX = 646;
+    public static final int MODE_EXTRADIM_OFF = 647;
+    public static final int MODE_EXTRADIM_MIN = 648;
+    public static final int MODE_EXTRADIM_MID = 649;
+    public static final int MODE_EXTRADIM_MAX = 650;
+    public static final int MODE_NIGHTLIGHT_OFF = 651;
+    public static final int MODE_NIGHTLIGHT_MIN = 652;
+    public static final int MODE_NIGHTLIGHT_MID = 653;
+    public static final int MODE_NIGHTLIGHT_MAX = 654;
+    public static final int MODE_COLORSPACE_VIVID = 655;
+    public static final int MODE_COLORSPACE_NATURAL = 656;
+    public static final int MODE_COLORSPACE_CINEMATIC = 657;
+    public static final int MODE_COLORSPACE_BRILLIANT = 658;
 
     // Holds <preference_key> -> <proc_node> mapping
     public static final Map<String, String> sBooleanNodePreferenceMap = new HashMap<>();

@@ -286,6 +286,18 @@ public class OplusParts extends PreferenceFragment
                 return updateSliderActions(
                         R.array.notification_slider_refresh_entries,
                         R.array.notification_slider_refresh_entry_values);
+            case Constants.NOTIF_SLIDER_FOR_EXTRADIM:
+                return updateSliderActions(
+                        R.array.notification_slider_extradim_entries,
+                        R.array.notification_slider_extradim_entry_values);
+            case Constants.NOTIF_SLIDER_FOR_NIGHTLIGHT:
+                return updateSliderActions(
+                        R.array.notification_slider_nightlight_entries,
+                        R.array.notification_slider_nightlight_entry_values);
+            case Constants.NOTIF_SLIDER_FOR_COLORSPACE:
+                return updateSliderActions(
+                        R.array.notification_slider_colorspace_entries,
+                        R.array.notification_slider_colorspace_entry_values);
             default:
                 return false;
         }
@@ -478,6 +490,12 @@ public class OplusParts extends PreferenceFragment
                 return R.array.config_defaultSliderActionsForNotificationRinger;
             case Constants.NOTIF_SLIDER_FOR_REFRESH:
                 return R.array.config_defaultSliderActionsForRefresh;
+            case Constants.NOTIF_SLIDER_FOR_EXTRADIM:
+                return R.array.config_defaultSliderActionsForExtraDim;
+            case Constants.NOTIF_SLIDER_FOR_NIGHTLIGHT:
+                return R.array.config_defaultSliderActionsForNightLight;
+            case Constants.NOTIF_SLIDER_FOR_COLORSPACE:
+                return R.array.config_defaultSliderActionsForColorSpace;
             default:
                 return 0;
         }
