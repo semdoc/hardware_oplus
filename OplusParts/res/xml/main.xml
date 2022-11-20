@@ -76,6 +76,12 @@
         android:title="@string/usb_title">
 
         <SwitchPreference
+            android:key="otg"
+            android:icon="@drawable/ic_otg"
+            android:title="@string/otg_title"
+            android:summary="@string/otg_summary" />
+
+        <SwitchPreference
             android:key="usb2_fast_charge"
             android:icon="@drawable/ic_usb2_fc"
             android:summary="@string/usb2_fc_summary"

@@ -26,4 +26,7 @@
 
     <!-- Whether to show Jitter Test -->
     <bool name="config_deviceSupportsJitterTest">true</bool>
+
+    <!-- Whether device supports USB-OTG -->
+    <bool name="config_deviceSupportsOTG">false</bool>
 </resources>
