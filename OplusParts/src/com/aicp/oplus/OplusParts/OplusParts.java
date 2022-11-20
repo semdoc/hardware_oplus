@@ -56,8 +56,6 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_CPU = "cpu";
     public static final String KEY_POWER_EFFICIENT_WQ_SWITCH = "power_efficient_workqueue";
 
-    public static final String KEY_CATEGORY_USB = "usb";
-    public static final String KEY_OTG_SWITCH = "otg";
     private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String FILE_LEVEL = "/sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level";
     private static final long testVibrationPattern[] = {0,5};
@@ -67,7 +65,6 @@ public class OplusParts extends PreferenceFragment
     private ListPreference mMiddleKeyPref;
     private ListPreference mBottomKeyPref;
 
-    private static TwoStatePreference mOTGModeSwitch;
     private SwitchPreference mUSB2FastChargeModeSwitch;
 
     private CustomSeekBarPreference mVibratorStrengthPreference;
@@ -84,25 +81,6 @@ public class OplusParts extends PreferenceFragment
 
         mVibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-        // USB category
-        boolean usbCategory = false;
-
-        // OTG
-        usbCategory = usbCategory | isFeatureSupported(context, R.bool.config_deviceSupportsOTG);
-        if (isFeatureSupported(context, R.bool.config_deviceSupportsOTG)) {
-            mOTGModeSwitch = (TwoStatePreference) findPreference(KEY_OTG_SWITCH);
-            mOTGModeSwitch.setEnabled(OTGModeSwitch.isSupported(this.getContext()));
-            mOTGModeSwitch.setChecked(OTGModeSwitch.isCurrentlyEnabled(this.getContext()));
-            mOTGModeSwitch.setOnPreferenceChangeListener(new OTGModeSwitch());
-        }
-        else {
-           findPreference(KEY_OTG_SWITCH).setVisible(false);
-        }
-
-        if (!usbCategory) {
-            getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_USB));
-        }
 
         mUSB2FastChargeModeSwitch = (SwitchPreference) findPreference(KEY_USB2_SWITCH);
         if (Utils.fileWritable(FILE_FAST_CHARGE)) {

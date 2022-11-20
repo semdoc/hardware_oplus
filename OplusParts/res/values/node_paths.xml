@@ -27,9 +27,4 @@
     <string name="node_quiet_mode_switch"></string>
     <string name="node_quiet_mode_switch_true"></string>
     <string name="node_quiet_mode_switch_false"></string>
-
-    <!-- USB-OTG sysfs node path, true, false -->
-    <string name="node_otg_mode_switch"></string>
-    <string name="node_otg_mode_switch_true"></string>
-    <string name="node_otg_mode_switch_false"></string>
 </resources>

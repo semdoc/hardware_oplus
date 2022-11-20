@@ -42,10 +42,6 @@ public class Startup extends BroadcastReceiver {
         if (enabled) {
             restore(PowerEfficientWorkqueueModeSwitch.getFile(context), enabled);
                }
-        enabled = sharedPrefs.getBoolean(OplusParts.KEY_OTG_SWITCH, false);
-        if (enabled) {
-            restore(OTGModeSwitch.getFile(context), enabled);
-               }
         enabled = sharedPrefs.getBoolean(OplusParts.KEY_QUIET_MODE_SWITCH, false);
         if (enabled) {
             restore(QuietModeSwitch.getFile(context), enabled);
