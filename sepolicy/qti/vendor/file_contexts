@@ -103,8 +103,9 @@
 # Power Efficient Workqueue
 /sys/module/workqueue/parameters/power_efficient                                          u:object_r:sysfs_workqueue:s0
 
-# AICP - PartsBin Display Modes
-/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/dynamic_fps             u:object_r:sysfs_dm:s0
+# AICP - OplusParts nodes
+/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/dynamic_fps         u:object_r:sysfs_dm:s0
+/sys/module/msm_drm/parameters(/.*)?                                                      u:object_r:sysfs_dm:s0
 
 # AICP - Vibrator
 /sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level                     u:object_r:sysfs_vibrator:s0

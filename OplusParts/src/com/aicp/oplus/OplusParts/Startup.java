@@ -25,6 +25,7 @@ import androidx.preference.PreferenceManager;
 
 import com.aicp.oplus.OplusParts.Utils;
 import com.aicp.oplus.OplusParts.modeswitch.*;
+import com.aicp.oplus.OplusParts.preferences.*;
 
 public class Startup extends BroadcastReceiver {
 
@@ -32,9 +33,17 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
+
         OplusParts.restoreSliderStates(context);
         OplusParts.restoreFastChargeSetting(context);
         OplusParts.restoreVibStrengthSetting(context);
+        BluePreference.restore(context);
+        ContrastPreference.restore(context);
+        GreenPreference.restore(context);
+        HuePreference.restore(context);
+        RedPreference.restore(context);
+        SaturationPreference.restore(context);
+        ValuePreference.restore(context);
 
         boolean enabled = false;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);

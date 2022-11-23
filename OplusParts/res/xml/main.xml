@@ -54,6 +54,24 @@
             android:summary="%s" />
     </PreferenceCategory>
 
+    <!-- Start of display Category -->
+    <PreferenceCategory
+        android:key="display"
+        android:title="@string/graphics_title">
+
+        <Preference
+            android:key="kcal"
+            android:icon="@drawable/ic_panel"
+            android:title="@string/kcal_settings_title"
+            android:summary="@string/kcal_settings_summary"
+            android:persistent="false" >
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.aicp.oplus.OplusParts"
+                    android:targetClass="com.aicp.oplus.OplusParts.kcal.KcalSettingsActivity" />
+        </Preference>
+
+    </PreferenceCategory>
+
     <com.aicp.gear.preference.SelfRemovingPreferenceCategory
         android:key="touchscreen_gestures"
         android:title="@string/touchscreen_gestures_category_title"

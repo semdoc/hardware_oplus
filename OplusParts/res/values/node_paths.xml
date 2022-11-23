@@ -18,6 +18,28 @@
 <!-- These resources are around just to allow their values to be customized
      for different OnePlus serires/devices.  Do not translate. -->
 <resources>
+
+    <!-- Kcal RED sysfs node path -->
+    <string name="node_red_preference"></string>
+
+    <!-- Kcal GREEN sysfs node path -->
+    <string name="node_green_preference"></string>
+
+    <!-- Kcal BLUE sysfs node path -->
+    <string name="node_blue_preference"></string>
+
+    <!-- Kcal SATURATION sysfs node path -->
+    <string name="node_saturation_preference"></string>
+
+    <!-- Kcal CONTRAST sysfs node path -->
+    <string name="node_contrast_preference"></string>
+
+    <!-- Kcal HUE sysfs node path -->
+    <string name="node_hue_preference"></string>
+
+    <!-- Kcal VALUE sysfs node path -->
+    <string name="node_value_preference"></string>
+
     <!-- Power Efficient Workqueue sysfs node path, true, false -->
     <string name="node_power_efficient_workqueue_mode_switch"></string>
     <string name="node_power_efficient_workqueue_mode_switch_true"></string>

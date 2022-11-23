@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2022 The Evolution X Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:settings="http://schemas.android.com/apk/res/com.aicp.oplus.OplusParts"
+ 	android.title="@string/kcal_settings_title">
+
+    <PreferenceCategory
+        android:key="kcal_values"
+        android:title="@string/kcal_settings">
+
+        <com.aicp.oplus.OplusParts.preferences.RedPreference
+            android:key="red"
+            android:title="@string/red_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.GreenPreference
+            android:key="green"
+            android:title="@string/green_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.BluePreference
+            android:key="blue"
+            android:title="@string/blue_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.SaturationPreference
+            android:key="saturation"
+            android:title="@string/saturation_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.HuePreference
+            android:key="hue"
+            android:title="@string/hue_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.ValuePreference
+            android:key="value"
+            android:title="@string/value_title" />
+
+        <com.aicp.oplus.OplusParts.preferences.ContrastPreference
+            android:key="contrast"
+            android:title="@string/contrast_title" />
+    </PreferenceCategory>
+</PreferenceScreen>
