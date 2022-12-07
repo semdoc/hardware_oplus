@@ -51,7 +51,7 @@ public class TouchscreenGestureSettings extends CollapsingToolbarBaseActivity
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, getNewFragment())
+                    .replace(com.android.settingslib.widget.R.id.content_frame, getNewFragment())
                     .commit();
         }
     }
