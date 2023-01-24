@@ -35,7 +35,6 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent bootintent) {
 
         OplusParts.restoreSliderStates(context);
-        OplusParts.restoreFastChargeSetting(context);
         BluePreference.restore(context);
         ContrastPreference.restore(context);
         GreenPreference.restore(context);
@@ -54,6 +53,10 @@ public class Startup extends BroadcastReceiver {
         enabled = sharedPrefs.getBoolean(OplusParts.KEY_QUIET_MODE_SWITCH, false);
         if (enabled) {
             restore(QuietModeSwitch.getFile(context), enabled);
+        }
+        enabled = sharedPrefs.getBoolean(OplusParts.KEY_USB2_SWITCH, false);
+        if (enabled) {
+        restore(USB2FastChargeModeSwitch.getFile(context), enabled);
         }
     }
 

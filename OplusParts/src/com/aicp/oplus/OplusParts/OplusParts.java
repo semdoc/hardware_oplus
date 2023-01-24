@@ -49,7 +49,6 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_DISPLAY = "display";
     public static final String KEY_KCAL = "kcal";
 
-    private static final String KEY_USB2_SWITCH = "usb2_fast_charge";
     public static final String KEY_CATEGORY_MISC = "misc";
     public static final String KEY_QUIET_MODE_SWITCH = "quiet_mode";
 
@@ -59,14 +58,9 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_CPU = "cpu";
     public static final String KEY_POWER_EFFICIENT_WQ_SWITCH = "power_efficient_workqueue";
 
-    private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
-    private static final String DEFAULT = "3";
-
     private ListPreference mTopKeyPref;
     private ListPreference mMiddleKeyPref;
     private ListPreference mBottomKeyPref;
-
-    private SwitchPreference mUSB2FastChargeModeSwitch;
 
     private static TwoStatePreference mQuietModeSwitch;
     private static TwoStatePreference mPowerEfficientWorkqueueModeSwitch;
@@ -74,6 +68,10 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_CATEGORY_VIBRATOR = "vibrator";
     public static final String KEY_VIBSTRENGTH = "vib_strength";
     private VibratorStrengthPreference mVibratorStrength;
+
+    public static final String KEY_CATEGORY_USB = "usb";
+    public static final String KEY_USB2_SWITCH = "usb2_fast_charge";
+    private static TwoStatePreference mUSB2FastChargeModeSwitch;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -94,16 +92,6 @@ public class OplusParts extends PreferenceFragment
 
         if (!displayCategory) {
             getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_DISPLAY));
-        }
-
-        mUSB2FastChargeModeSwitch = (SwitchPreference) findPreference(KEY_USB2_SWITCH);
-        if (Utils.fileWritable(FILE_FAST_CHARGE)) {
-            mUSB2FastChargeModeSwitch.setEnabled(true);
-            mUSB2FastChargeModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB2_SWITCH,
-                Utils.getFileValueAsBoolean(FILE_FAST_CHARGE, false)));
-            mUSB2FastChargeModeSwitch.setOnPreferenceChangeListener(this);
-        } else {
-            mUSB2FastChargeModeSwitch.setEnabled(false);
         }
 
         // CPU category
@@ -154,6 +142,24 @@ public class OplusParts extends PreferenceFragment
             getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_UIBENCH));
         }
 
+        boolean usbCategory = false;
+
+        // USB2 Force FastCharge
+        usbCategory = usbCategory | isFeatureSupported(context, R.bool.config_deviceSupportsUSB2FC);
+        if (isFeatureSupported(context, R.bool.config_deviceSupportsUSB2FC)) {
+            mUSB2FastChargeModeSwitch = (TwoStatePreference) findPreference(KEY_USB2_SWITCH);
+            mUSB2FastChargeModeSwitch.setEnabled(USB2FastChargeModeSwitch.isSupported(this.getContext()));
+            mUSB2FastChargeModeSwitch.setChecked(USB2FastChargeModeSwitch.isCurrentlyEnabled(this.getContext()));
+            mUSB2FastChargeModeSwitch.setOnPreferenceChangeListener(new USB2FastChargeModeSwitch());
+        }
+        else {
+           findPreference(KEY_USB2_SWITCH).setVisible(false);
+        }
+
+        if (!usbCategory) {
+            getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_USB));
+        }
+
         boolean vibratorCategory = false;
 
         // Vibrator
@@ -193,14 +199,6 @@ public class OplusParts extends PreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mUSB2FastChargeModeSwitch) {
-            boolean enabled = (Boolean) newValue;
-            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-            sharedPrefs.edit().putBoolean(KEY_USB2_SWITCH, enabled).commit();
-            Utils.writeValue(FILE_FAST_CHARGE, enabled ? "1" : "0");
-            return true;
-        }
-
         String key = preference.getKey();
         switch (key) {
             case Constants.NOTIF_SLIDER_USAGE_KEY:
@@ -469,15 +467,6 @@ public class OplusParts extends PreferenceFragment
         // TODO: Replace with proper exception type class
         catch (Exception e) {
             return false;
-        }
-    }
-
-    public static void restoreFastChargeSetting(Context context) {
-        if (Utils.fileWritable(FILE_FAST_CHARGE)) {
-            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_USB2_SWITCH,
-                Utils.getFileValueAsBoolean(FILE_FAST_CHARGE, false));
-            Utils.writeValue(FILE_FAST_CHARGE, value ? "1" : "0");
         }
     }
 

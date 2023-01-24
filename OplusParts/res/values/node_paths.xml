@@ -52,4 +52,9 @@
 
     <!-- System vibration sysfs node path -->
     <string name="node_vibrator_strength_preference"></string>
+
+    <!-- USB 2.0 Force fastcharge sysfs node path, true, false -->
+    <string name="node_usb2_fast_charge_mode_switch"></string>
+    <string name="node_usb2_fast_charge_mode_switch_true"></string>
+    <string name="node_usb2_fast_charge_mode_switch_false"></string>
 </resources>

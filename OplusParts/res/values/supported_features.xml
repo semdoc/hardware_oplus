@@ -32,4 +32,7 @@
 
     <!-- Whether device supports System vibration intensity -->
     <bool name="config_deviceSupportsSysVib">false</bool>
+
+    <!-- Whether device supports USB2.0 Force Fastcharge -->
+    <bool name="config_deviceSupportsUSB2FC">false</bool>
 </resources>
