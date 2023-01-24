@@ -50,7 +50,6 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_KCAL = "kcal";
 
     private static final String KEY_USB2_SWITCH = "usb2_fast_charge";
-    private static final String KEY_VIBSTRENGTH = "vib_strength";
     public static final String KEY_CATEGORY_MISC = "misc";
     public static final String KEY_QUIET_MODE_SWITCH = "quiet_mode";
 
@@ -61,8 +60,6 @@ public class OplusParts extends PreferenceFragment
     public static final String KEY_POWER_EFFICIENT_WQ_SWITCH = "power_efficient_workqueue";
 
     private static final String FILE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
-    private static final String FILE_LEVEL = "/sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level";
-    private static final long testVibrationPattern[] = {0,5};
     private static final String DEFAULT = "3";
 
     private ListPreference mTopKeyPref;
@@ -71,20 +68,18 @@ public class OplusParts extends PreferenceFragment
 
     private SwitchPreference mUSB2FastChargeModeSwitch;
 
-    private CustomSeekBarPreference mVibratorStrengthPreference;
     private static TwoStatePreference mQuietModeSwitch;
     private static TwoStatePreference mPowerEfficientWorkqueueModeSwitch;
 
-    private Vibrator mVibrator;
+    public static final String KEY_CATEGORY_VIBRATOR = "vibrator";
+    public static final String KEY_VIBSTRENGTH = "vib_strength";
+    private VibratorStrengthPreference mVibratorStrength;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.main);
 
         Context context = this.getContext();
-
-        mVibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         // Display
         boolean displayCategory = false;
@@ -109,15 +104,6 @@ public class OplusParts extends PreferenceFragment
             mUSB2FastChargeModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mUSB2FastChargeModeSwitch.setEnabled(false);
-        }
-
-        mVibratorStrengthPreference =  (CustomSeekBarPreference) findPreference(KEY_VIBSTRENGTH);
-        if (Utils.fileWritable(FILE_LEVEL)) {
-            mVibratorStrengthPreference.setValue(sharedPrefs.getInt(KEY_VIBSTRENGTH,
-                Integer.parseInt(Utils.getFileValue(FILE_LEVEL, DEFAULT))));
-            mVibratorStrengthPreference.setOnPreferenceChangeListener(this);
-        } else {
-            mVibratorStrengthPreference.setEnabled(false);
         }
 
         // CPU category
@@ -168,6 +154,24 @@ public class OplusParts extends PreferenceFragment
             getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_UIBENCH));
         }
 
+        boolean vibratorCategory = false;
+
+        // Vibrator
+        vibratorCategory = vibratorCategory | isFeatureSupported(context, R.bool.config_deviceSupportsSysVib);
+        if (isFeatureSupported(context, R.bool.config_deviceSupportsSysVib)) {
+            mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
+            if (mVibratorStrength != null) {
+                mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported(this.getContext()));
+            }
+        }
+        else {
+            findPreference(KEY_VIBSTRENGTH).setVisible(false);
+        }
+
+        if (!vibratorCategory) {
+            getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_VIBRATOR));
+        }
+
         initNotificationSliderPreference();
     }
 
@@ -194,13 +198,6 @@ public class OplusParts extends PreferenceFragment
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_USB2_SWITCH, enabled).commit();
             Utils.writeValue(FILE_FAST_CHARGE, enabled ? "1" : "0");
-            return true;
-        } else if (preference == mVibratorStrengthPreference) {
-            int value = Integer.parseInt(newValue.toString());
-            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-            sharedPrefs.edit().putInt(KEY_VIBSTRENGTH, value).commit();
-            Utils.writeValue(FILE_LEVEL, String.valueOf(value));
-            mVibrator.vibrate(testVibrationPattern, -1);
             return true;
         }
 
@@ -481,15 +478,6 @@ public class OplusParts extends PreferenceFragment
             boolean value = sharedPrefs.getBoolean(KEY_USB2_SWITCH,
                 Utils.getFileValueAsBoolean(FILE_FAST_CHARGE, false));
             Utils.writeValue(FILE_FAST_CHARGE, value ? "1" : "0");
-        }
-    }
-
-    public static void restoreVibStrengthSetting(Context context) {
-        if (Utils.fileWritable(FILE_LEVEL)) {
-            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            int value = sharedPrefs.getInt(KEY_VIBSTRENGTH,
-                Integer.parseInt(Utils.getFileValue(FILE_LEVEL, DEFAULT)));
-            Utils.writeValue(FILE_LEVEL, String.valueOf(value));
         }
     }
 

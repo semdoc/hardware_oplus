@@ -29,4 +29,7 @@
 
     <!-- Whether to show Jitter Test -->
     <bool name="config_deviceSupportsJitterTest">true</bool>
+
+    <!-- Whether device supports System vibration intensity -->
+    <bool name="config_deviceSupportsSysVib">false</bool>
 </resources>

@@ -109,6 +109,7 @@
 
 # AICP - Vibrator
 /sys/devices/platform/soc/a8c000.i2c/i2c-6/6-005a/leds/vibrator/level                     u:object_r:sysfs_vibrator:s0
+/sys/devices/platform/soc/89c000.i2c/i2c-2/2-005a/leds/vibrator/level                     u:object_r:sysfs_vibrator:s0
 /sys/devices/platform/soc/88c000.i2c/i2c-10/10-005a/leds/vibrator/level                   u:object_r:sysfs_vibrator:s0
 
 # AICP - QS Sys UI Info

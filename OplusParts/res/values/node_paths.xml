@@ -49,4 +49,7 @@
     <string name="node_quiet_mode_switch"></string>
     <string name="node_quiet_mode_switch_true"></string>
     <string name="node_quiet_mode_switch_false"></string>
+
+    <!-- System vibration sysfs node path -->
+    <string name="node_vibrator_strength_preference"></string>
 </resources>

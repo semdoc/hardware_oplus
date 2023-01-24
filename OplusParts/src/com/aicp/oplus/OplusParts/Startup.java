@@ -36,7 +36,6 @@ public class Startup extends BroadcastReceiver {
 
         OplusParts.restoreSliderStates(context);
         OplusParts.restoreFastChargeSetting(context);
-        OplusParts.restoreVibStrengthSetting(context);
         BluePreference.restore(context);
         ContrastPreference.restore(context);
         GreenPreference.restore(context);
@@ -44,6 +43,7 @@ public class Startup extends BroadcastReceiver {
         RedPreference.restore(context);
         SaturationPreference.restore(context);
         ValuePreference.restore(context);
+        VibratorStrengthPreference.restore(context);
 
         boolean enabled = false;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);

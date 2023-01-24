@@ -92,6 +92,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         }
 
         mSeekBar = new SeekBar(context, attrs);
+        mSeekBar.setMax(mMaxValue);
         setLayoutResource(R.layout.preference_custom_seekbar);
     }
 
@@ -201,6 +202,11 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     protected int getLimitedValue(int v) {
         return v < mMinValue ? mMinValue : (v > mMaxValue ? mMaxValue : v);
+    }
+
+    public void setMax(int max) {
+        mMaxValue = max;
+        mSeekBar.setMax(mMaxValue);
     }
 
     protected int getSeekValue(int v) {
