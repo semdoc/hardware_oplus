@@ -19,6 +19,7 @@
     xmlns:aicpextras="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Start of Alert Slider Category -->
     <PreferenceCategory
         android:key="slider"
         android:title="@string/notification_slider_category_title">
@@ -54,7 +55,19 @@
             android:summary="%s" />
     </PreferenceCategory>
 
-    <!-- Start of display Category -->
+    <!-- Start of CPU Category -->
+    <PreferenceCategory
+        android:key="cpu"
+        android:title="@string/cpu_title">
+
+        <SwitchPreference
+            android:key="power_efficient_workqueue"
+            android:icon="@drawable/ic_cpu"
+            android:title="@string/power_efficient_workqueue_title"
+            android:summary="@string/power_efficient_workqueue_summary" />
+    </PreferenceCategory>
+
+    <!-- Start of Display Category -->
     <PreferenceCategory
         android:key="display"
         android:title="@string/graphics_title">
@@ -69,9 +82,9 @@
                     android:targetPackage="com.aicp.oplus.OplusParts"
                     android:targetClass="com.aicp.oplus.OplusParts.kcal.KcalSettingsActivity" />
         </Preference>
-
     </PreferenceCategory>
 
+    <!-- Start of Gestures Category -->
     <com.aicp.gear.preference.SelfRemovingPreferenceCategory
         android:key="touchscreen_gestures"
         android:title="@string/touchscreen_gestures_category_title"
@@ -89,6 +102,19 @@
 
     </com.aicp.gear.preference.SelfRemovingPreferenceCategory>
 
+    <!-- Start of Misc settings category -->
+    <PreferenceCategory
+        android:key="misc"
+        android:title="@string/category_misc">
+
+        <SwitchPreference
+            android:key="quiet_mode"
+            android:icon="@drawable/ic_quiet_mode"
+            android:title="@string/quiet_mode_title"
+            android:summary="@string/quiet_mode_summary" />
+    </PreferenceCategory>
+
+    <!-- Start of USB Category -->
     <PreferenceCategory
         android:key="usb"
         android:title="@string/usb_title">
@@ -98,18 +124,6 @@
             android:icon="@drawable/ic_usb2_fc"
             android:summary="@string/usb2_fc_summary"
             android:title="@string/usb2_fc_title" />
-    </PreferenceCategory>
-
-    <!-- Start of CPU Category -->
-    <PreferenceCategory
-        android:key="cpu"
-        android:title="@string/cpu_title">
-
-        <SwitchPreference
-            android:key="power_efficient_workqueue"
-            android:icon="@drawable/ic_cpu"
-            android:title="@string/power_efficient_workqueue_title"
-            android:summary="@string/power_efficient_workqueue_summary" />
     </PreferenceCategory>
 
     <!-- Start of UiBench Category -->
@@ -127,18 +141,6 @@
                     android:targetPackage="com.aicp.oplus.OplusParts"
                     android:targetClass="com.aicp.oplus.OplusParts.uibench.JitterTestActivity" />
         </Preference>
-    </PreferenceCategory>
-
-    <!-- Start of misc settings category -->
-    <PreferenceCategory
-        android:key="misc"
-        android:title="@string/category_misc">
-
-        <SwitchPreference
-            android:key="quiet_mode"
-            android:icon="@drawable/ic_quiet_mode"
-            android:title="@string/quiet_mode_title"
-            android:summary="@string/quiet_mode_summary" />
     </PreferenceCategory>
 
     <!-- Start of vibrator Category -->
