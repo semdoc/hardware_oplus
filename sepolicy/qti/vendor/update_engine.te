@@ -1,0 +1,1 @@
+allow update_engine bt_firmware_file:dir search;
