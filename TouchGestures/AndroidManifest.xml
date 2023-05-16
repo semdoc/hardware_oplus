@@ -32,7 +32,8 @@
         <!-- Touch Gesture Settings Activity -->
         <activity
             android:name=".TouchscreenGestureSettings"
-            android:label="@string/touchscreen_gesture_settings_title" />
+            android:label="@string/touchscreen_gesture_settings_title"
+            android:exported="true" />
 
         <activity
             android:name=".ScreenOffLaunchGestureActivity"
